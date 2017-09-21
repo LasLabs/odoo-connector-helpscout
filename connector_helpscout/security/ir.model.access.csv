@@ -1,0 +1,6 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_helpscout_backend","helpscout_backend connector manager","model_helpscout_backend","connector.group_connector_manager",1,1,1,1
+"access_helpscout_binding","helpscout_binding connector manager","model_helpscout_binding","connector.group_connector_manager",1,1,1,1
+"access_helpscout_backend_user","helpscout_backend user","model_helpscout_backend","sales_team.group_sale_salesman",1,0,0,0
+"access_helpscout_backend_sale_manager","helpscout_backend manager","model_helpscout_backend","sales_team.group_sale_manager",1,0,0,0
+"access_helpscout_customer_user","helpscout_customer user","model_helpscout_customer","base.group_user",1,1,1,1
