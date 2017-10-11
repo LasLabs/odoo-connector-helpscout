@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 LasLabs Inc.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="helpscout_web_hook_form" model="ir.ui.view">
+        <field name="name">helpscout.web.hook.form</field>
+        <field name="model">helpscout.web.hook</field>
+        <field name="arch" type="xml">
+            <form string="Web Hook">
+
+                <header />
+
+                <sheet>
+                    <group name="group_main">
+                        <field name="token_secret" />
+                        <field name="company_id" />
+                        <field name="uri" />
+
+                        <field name="interface_type" invisible="1" />
+                        <field name="token_type" invisible="1" />
+                        <field name="backend_id" invisible="1" />
+                        <field name="name" invisible="1" />
+                    </group>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+</odoo>

@@ -1,3 +1,5 @@
 connector
 partner-contact
 queue
+# https://github.com/OCA/webhook/pull/4
+webhook https://github.com/LasLabs/webhook.git release/10.0/base_webhook

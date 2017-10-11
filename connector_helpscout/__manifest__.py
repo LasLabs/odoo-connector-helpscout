@@ -15,6 +15,7 @@
         "python": ['helpscout'],
     },
     "depends": [
+        "base_web_hook",
         "connector",
         "partner_firstname",
         "project",
@@ -23,6 +24,7 @@
     "data": [
         "security/ir.model.access.csv",
         "views/helpscout_backend_view.xml",
+        "views/helpscout_web_hook_view.xml",
         "views/connector_menu.xml",
     ],
 }
