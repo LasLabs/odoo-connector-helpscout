@@ -12,4 +12,5 @@ class HelpScoutModelBinder(Component):
     _inherit = ['base.binder', 'base.helpscout.connector']
     _apply_on = [
         'helpscout.customer',
+        'helpscout.user',
     ]

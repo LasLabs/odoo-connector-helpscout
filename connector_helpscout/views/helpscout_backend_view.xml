@@ -22,7 +22,7 @@
                     <group name="group_helpscout"
                            string="HelpScout Configuration">
                         <group>
-                            <field name="api_key" />
+                            <field name="api_key" password="1" />
                         </group>
                         <group>
                             <field name="company_id" />
@@ -67,6 +67,25 @@
                                         type="object"
                                         class="oe_highlight"
                                         string="Queue Import" />
+                            </group>
+                            <group name="group_import_users">
+                                <div>
+                                    <label for="import_users_from_date"
+                                           string="Import Users From"
+                                           class="oe_inline" />
+                                    <field name="import_users_from_date"
+                                           class="oe_inline"
+                                           nolabel="1" />
+                                </div>
+                                <button name="action_import_users"
+                                        type="object"
+                                        class="oe_highlight"
+                                        string="Queue Import" />
+                            </group>
+                        </page>
+                        <page name="page_settings" string="Settings">
+                            <group name="group_users" string="Users">
+                                <field name="user_match_field" />
                             </group>
                         </page>
                     </notebook>

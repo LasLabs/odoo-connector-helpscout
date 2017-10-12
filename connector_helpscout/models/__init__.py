@@ -7,6 +7,7 @@ from . import helpscout_binding
 
 # Models
 from . import helpscout_customer
+from . import helpscout_user
 
 # Web Hook
 from . import helpscout_web_hook

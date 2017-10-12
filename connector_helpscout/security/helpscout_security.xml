@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 LasLabs Inc.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+    <record id="ir_module_category_helpscout" model="ir.module.category">
+        <field name="name">HelpScout</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="group_helpscout_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="ir_module_category_helpscout"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="group_helpscout_admin" model="res.groups">
+        <field name="name">Admin</field>
+        <field name="category_id" ref="ir_module_category_helpscout"/>
+        <field name="implied_ids" eval="[(4, ref('group_helpscout_user'))]"/>
+    </record>
+
+    <record id="group_helpscout_owner" model="res.groups">
+        <field name="name">Owner</field>
+        <field name="category_id" ref="ir_module_category_helpscout"/>
+        <field name="implied_ids" eval="[(4, ref('group_helpscout_admin'))]"/>
+    </record>
+</odoo>

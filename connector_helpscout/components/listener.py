@@ -27,6 +27,7 @@ class HelpScoutListenerBinding(Component):
     _inherit = 'helpscout.listener'
     _apply_on = [
         'helpscout.customer',
+        'helpscout.user',
     ]
 
     @skip_if(lambda self, record, **kwargs: self.no_connector_export(record))
@@ -50,7 +51,8 @@ class HelpScoutListenerOdoo(Component):
     _name = 'helpscout.listener.odoo'
     _inherit = 'helpscout.listener'
     _apply_on = [
-        'helpscout.customer',
+        'res.partner',
+        'res.users',
     ]
 
     def new_binding(self, record):

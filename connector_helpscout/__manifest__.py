@@ -20,9 +20,11 @@
         "partner_firstname",
         "project",
         "queue_job",
+        "sales_team",
     ],
     "data": [
         "security/ir.model.access.csv",
+        "security/helpscout_security.xml",
         "views/helpscout_backend_view.xml",
         "views/helpscout_web_hook_view.xml",
         "views/connector_menu.xml",

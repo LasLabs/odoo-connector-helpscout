@@ -29,6 +29,10 @@ To configure this module, you need to:
 Usage
 =====
 
+Note: Odoo user emails are assumed to be correct. If Odoo user logins are more
+likely to match your HelpScout users' email addresses, select 'Login' in the
+HelpScout connector backend settings.
+
 To use this module, you need to:
 
 #. Go to ...

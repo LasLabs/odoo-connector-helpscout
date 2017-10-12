@@ -4,3 +4,4 @@
 "access_helpscout_backend_user","helpscout_backend user","model_helpscout_backend","sales_team.group_sale_salesman",1,0,0,0
 "access_helpscout_backend_sale_manager","helpscout_backend manager","model_helpscout_backend","sales_team.group_sale_manager",1,0,0,0
 "access_helpscout_customer_user","helpscout_customer user","model_helpscout_customer","base.group_user",1,1,1,1
+"access_helpscout_user","helpscout user","model_helpscout_user","base.group_user",1,0,0,0

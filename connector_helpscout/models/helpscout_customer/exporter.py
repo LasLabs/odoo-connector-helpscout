@@ -15,7 +15,7 @@ class HelpScoutCustomerExportMapper(Component):
     direct = [(none('firstname'), 'first_name'),
               (none('lastname'), 'last_name'),
               (none('comment'), 'background'),
-              (none('title'), 'job_title'),
+              (none('function'), 'job_title'),
               ]
 
     @mapping
@@ -48,6 +48,6 @@ class HelpScoutCustomerExportMapper(Component):
 
 class HelpScoutCustomerExporter(Component):
     """Export one HelpScout record."""
-    _name = 'helpscut.customer.record.exporter'
+    _name = 'helpscout.customer.record.exporter'
     _inherit = 'helpscout.exporter'
     _apply_on = 'helpscout.customer'

@@ -25,6 +25,7 @@ class HelpscoutBackend(models.Model):
 
     EVENT_TO_MODEL = {
         'customer': 'helpscout.customer',
+        'user': 'helpscout.user',
         'satisfaction': 'helpscout.rating',
         'convo': 'helpscout.conversation',
     }
@@ -55,10 +56,23 @@ class HelpscoutBackend(models.Model):
              'this company, that are not otherwise assigned to a HelpScout '
              'backend.',
     )
+    user_match_field = fields.Selection(
+        selection=[
+            ('email', 'Email'),
+            ('login', 'Login'),
+        ],
+        required=True,
+        default='email',
+        string='User Match Field',
+        help='Select which Odoo user field to use when matching imported '
+             'Helpscout users to existing Odoo users. This field will be '
+             'matched against the Helpscout user\'s email address.'
+    )
 
     # These dates are used by the import crons to start where left off.
     import_customers_from_date = fields.Datetime()
     import_mailboxes_from_date = fields.Datetime()
+    import_users_from_date = fields.Datetime()
 
     @property
     @api.model
@@ -165,6 +179,12 @@ class HelpscoutBackend(models.Model):
         """Trigger an import for customers on the appropriate from field."""
         self.import_from_date('helpscout.customer',
                               'import_customers_from_date')
+
+    @api.multi
+    def action_import_users(self):
+        """Trigger an import for users on the appropriate from field."""
+        self.import_from_date('helpscout.user',
+                              'import_users_from_date')
 
     @api.multi
     def action_receive_hook(self, event_type, signature, data_str):
