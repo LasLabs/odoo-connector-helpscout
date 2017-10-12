@@ -55,7 +55,7 @@ class HelpScoutWebHook(models.Model):
         )
         model_name = self.HOOK_MAPS[self.hook.record.__class__.__name__]
         odoo_model = self.env[model_name]
-        return odoo_modelå.import_direct(
+        return odoo_model.import_direct(
             backend=self.backend_id, external_record=hook.record,
         )
 
