@@ -45,7 +45,7 @@ class HelpscoutBackend(models.Model):
     )
     web_hook_id = fields.Many2one(
         string='Web Hook',
-        comodel_name='helpscout.web.hook',
+        comodel_name='web.hook',
         help='Set this to enable web hooks for this backend.',
     )
     is_default_export = fields.Boolean(

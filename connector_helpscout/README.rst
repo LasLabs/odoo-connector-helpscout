@@ -41,6 +41,8 @@ Known Issues / Road Map
 =======================
 
 * Backend should use an adapter for web hook processing
+* Once hooks are tested, add ``with_delay`` to queue them instead of processing
+  immediately.
 
 Bug Tracker
 ===========

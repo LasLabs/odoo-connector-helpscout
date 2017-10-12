@@ -27,10 +27,18 @@
                         <group>
                             <field name="company_id" />
                             <field name="is_default_export" />
+                            <field name="web_hook_id"
+                                   domain="[('interface_type', '=', 'helpscout.web.hook')]"
+                                   context="{'default_backend_id': id,
+                                             'default_interface_type': 'helpscout.web.hook',
+                                             'default_token_type': 'helpscout.web.hook.token',
+                                             'default_name': name,
+                                             }" />
                         </group>
                     </group>
 
                     <notebook>
+
                         <page name="page_imports" string="Imports">
                             <group name="group_import_customers">
                                 <div>
