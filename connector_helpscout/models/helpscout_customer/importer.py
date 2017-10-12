@@ -36,7 +36,7 @@ class HelpScoutCustomerImportMapper(Component):
                 ('email', '=', self.email(record)['email']),
                 ('user_id', '=', False),
             ])
-        except AttributeError:
+        except TypeError:
             # In case no email is found
             return
 
