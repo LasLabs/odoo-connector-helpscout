@@ -10,7 +10,18 @@
         <field name="arch" type="xml">
             <form string="HelpScout Backend">
 
-                <header />
+                <header>
+                    <button name="action_create_web_hook"
+                            type="object"
+                            string="Create Web Hooks"
+                            attrs="{'invisible': [('web_hook_id', '!=', False)]}"
+                            />
+                    <button name="action_create_web_hook"
+                            type="object"
+                            string="Update Web Hooks"
+                            attrs="{'invisible': [('web_hook_id', '=', False)]}"
+                            />
+                </header>
 
                 <sheet>
 
@@ -27,13 +38,7 @@
                         <group>
                             <field name="company_id" />
                             <field name="is_default_export" />
-                            <field name="web_hook_id"
-                                   domain="[('interface_type', '=', 'helpscout.web.hook')]"
-                                   context="{'default_backend_id': id,
-                                             'default_interface_type': 'helpscout.web.hook',
-                                             'default_token_type': 'helpscout.web.hook.token',
-                                             'default_name': name,
-                                             }" />
+                            <field name="web_hook_id" />
                         </group>
                     </group>
 

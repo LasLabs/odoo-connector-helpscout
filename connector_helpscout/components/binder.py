@@ -14,4 +14,5 @@ class HelpScoutModelBinder(Component):
         'helpscout.customer',
         'helpscout.mailbox',
         'helpscout.user',
+        'helpscout.web.hook',
     ]

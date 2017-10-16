@@ -47,8 +47,9 @@ class HelpscoutBackend(models.Model):
     )
     web_hook_id = fields.Many2one(
         string='Web Hook',
-        comodel_name='web.hook',
-        help='Set this to enable web hooks for this backend.',
+        comodel_name='helpscout.web.hook',
+        readonly=True,
+        help='The web hook that is associated with this backend.',
     )
     is_default_export = fields.Boolean(
         string='Default Exporter?',
@@ -163,10 +164,32 @@ class HelpscoutBackend(models.Model):
             from_date_field: fields.Datetime.to_string(import_start_time),
         })
 
-    @api.model
-    def get_for_website(self, website):
-        """Return the backend that implements hooks for this website."""
-        return self.search([('web_hook_id.website_ids', '=', website.id)])
+    @api.multi
+    def action_create_web_hook(self):
+        """Create the web hook necessary for inbound sync & unlink existing.
+        """
+        for record in self:
+            values = record._get_hook_values()
+            if record.web_hook_id:
+                record.web_hook_id.write(values)
+            else:
+                hook = self.env['helpscout.web.hook'].create(values)
+                record.web_hook_id = hook.id
+
+    @api.multi
+    def _get_hook_values(self):
+        """Return the values for creating/updating a hook."""
+        self.ensure_one()
+        secret = self.env['web.hook']._default_secret(40)
+        name = '%s [%s]' % (self.name, self.company_id.name)
+        values = {
+            'interface_type': 'helpscout.web.hook',
+            'token_type': 'helpscout.web.hook.token',
+            'token_secret': secret,
+            'backend_id': self.id,
+            'name': name,
+        }
+        return values
 
     # Import actions
     @api.multi

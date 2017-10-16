@@ -1,1 +1,1 @@
-helpscout>=0.0.5b
+helpscout>=0.0.7b

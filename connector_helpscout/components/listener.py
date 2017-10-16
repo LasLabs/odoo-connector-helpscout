@@ -21,12 +21,14 @@ class HelpScoutListener(Component):
         record.with_delay().export_delete_record()
 
 
-class HelpScoutListenerBinding(Component):
-    """Generic event listener for HelpScout bindings."""
-    _name = 'helpscout.listener.binding'
+class HelpScoutListenerBindingCreateUpdate(Component):
+    """Generic event listener for HelpScout bindings for create/update.
+    """
+    _name = 'helpscout.listener.binding.create.update'
     _inherit = 'helpscout.listener'
     _apply_on = [
         'helpscout.customer',
+        'helpscout.web.hook',
     ]
 
     @skip_if(lambda self, record, **kwargs: self.no_connector_export(record))
@@ -37,17 +39,22 @@ class HelpScoutListenerBinding(Component):
     def on_record_write(self, record, fields=None):
         self.export_record(record, fields)
 
+
+
+class HelpScoutListenerBindingAll(Component):
+    """Generic event listener for HelpScout bindings, all CRUD."""
+    _name = 'helpscout.listener.binding.all'
+    _inherit = 'helpscout.listener.binding.create.update'
+    _apply_on = []
+
     @skip_if(lambda self, record, **kwargs: self.no_connector_export(record))
     def on_record_unlink(self, record):
         self.delete_record(record)
 
-    def no_connector_export(self, record):
-        return self.env.context.get('connector_no_export')
 
-
-class HelpScoutListenerOdoo(Component):
-    """Generic event listener for Odoo models."""
-    _name = 'helpscout.listener.odoo'
+class HelpScoutListenerOdooCreateUpdate(Component):
+    """Generic event listener for Odoo models create/update."""
+    _name = 'helpscout.listener.odoo.create.update'
     _inherit = 'helpscout.listener'
     _apply_on = [
         'res.partner',
@@ -70,6 +77,13 @@ class HelpScoutListenerOdoo(Component):
         if not record.helpscout_bind_ids:
             return
         self.export_record(record.helpscout_bind_ids, fields)
+
+
+class HelpScoutListenerOdooAll(Component):
+    """Generic event listener for Odoo models, all CRUD."""
+    _name = 'helpscout.listener.odoo.all'
+    _inherit = 'helpscout.listener.odoo.create.update'
+    _apply_on = []
 
     @skip_if(lambda self, record, **kwargs: self.no_connector_export(record))
     def on_record_unlink(self, record):

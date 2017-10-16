@@ -4,7 +4,8 @@
 
 import logging
 
-from odoo import models, fields, api, _
+from odoo import models, api
+from odoo.addons.component.core import Component
 
 _logger = logging.getLogger(__name__)
 
@@ -19,18 +20,13 @@ class HelpScoutWebHook(models.Model):
 
     _name = 'helpscout.web.hook'
     _description = 'HelpScout Web Hook'
-    _inherit = 'web.hook.adapter'
+    _inherit = ['helpscout.binding', 'web.hook.adapter']
 
     # Use this to map Helpscout.model objects to Odoo binding models
     HOOK_MAPS = {
         'Customer': 'helpscout.customer',
+        'Conversation': 'helpscout.conversation',
     }
-
-    backend_id = fields.Many2one(
-        string='Backend',
-        comodel_name='helpscout.backend',
-        required=True,
-    )
 
     @property
     @api.multi
@@ -75,3 +71,15 @@ class HelpScoutWebHookToken(models.Model):
         return self.hook_id.hook_object.validate_signature(
             secret, data_string,
         )
+
+
+class HelpScoutWebHookAdapter(Component):
+    """Utilize the API in context."""
+    _name = 'helpscout.web.hook.adapter'
+    _inherit = 'helpscout.adapter'
+    _apply_on = 'helpscout.web.hook'
+    _helpscout_endpoint = 'WebHook'
+
+    def create(self, data):
+        super(HelpScoutWebHookAdapter, self).create(data)
+        return 1
