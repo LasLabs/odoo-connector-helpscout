@@ -21,7 +21,7 @@ class HelpScoutWebHookExportMapper(Component):
     _inherit = 'helpscout.export.mapper'
     _apply_on = 'helpscout.web.hook'
 
-    direct = [(none('uri'), 'url'),
+    direct = [(none('uri_json'), 'url'),
               (none('token_secret'), 'secret_key'),
               ]
 
