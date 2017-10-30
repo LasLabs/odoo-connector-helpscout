@@ -43,6 +43,7 @@ class MockResponseImage(object):
         self.headers = {'content-type': 'image/jpeg'}
 
     def read(self):
+        # pylint: disable=W8106
         return self.resp_data
 
     def getcode(self):
