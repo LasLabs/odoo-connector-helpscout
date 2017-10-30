@@ -1,1 +1,2 @@
 helpscout>=0.0.7b
+vcrpy

@@ -40,7 +40,6 @@ class HelpScoutListenerBindingCreateUpdate(Component):
         self.export_record(record, fields)
 
 
-
 class HelpScoutListenerBindingAll(Component):
     """Generic event listener for HelpScout bindings, all CRUD."""
     _name = 'helpscout.listener.binding.all'

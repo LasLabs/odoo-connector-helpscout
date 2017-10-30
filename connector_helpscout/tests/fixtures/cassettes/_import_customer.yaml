@@ -1,0 +1,82 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.18.4]
+    method: GET
+    uri: https://api.helpscout.net/v1/customers/144228647.json
+  response:
+    body: {string: !!python/unicode '{"item":{"id":144228647,"firstName":"Test","lastName":"User","fullName":"Test
+        User","photoUrl":null,"photoType":null,"gender":"male","age":null,"organization":"Test
+        Company","jobTitle":"CEO","location":null,"createdAt":"2017-09-23T20:12:43Z","modifiedAt":"2017-10-28T17:21:12Z","background":"This
+        is a basic test user","address":null,"socialProfiles":null,"emails":[{"id":191676921,"value":"test@example.com","location":"work"}],"phones":[{"id":198059533,"value":"1234567890","location":"work"}],"chats":null,"websites":null}}'}
+    headers:
+      access-control-allow-credentials: ['true']
+      access-control-allow-headers: ['Origin, X-Requested-With, Content-Type, Accept,
+          Authorization']
+      access-control-allow-methods: ['GET, POST, PUT, DELETE']
+      access-control-allow-origin: ['*']
+      connection: [keep-alive]
+      content-length: ['526']
+      content-type: [application/json; charset=utf-8]
+      correlation-id: [83eeded5-611e-4ddb-8d91-10e9db5880aa#17467843]
+      date: ['Mon, 30 Oct 2017 16:50:51 GMT']
+      server: [nginx]
+      strict-transport-security: [max-age=31536000; includeSubdomains;]
+      via: [kong/0.10.3]
+      x-content-type-options: [nosniff]
+      x-frame-options: [SAMEORIGIN]
+      x-kong-proxy-latency: ['0']
+      x-kong-upstream-latency: ['17']
+      x-ratelimit-interval-burst: ['5']
+      x-ratelimit-interval-minute: ['60']
+      x-ratelimit-limit-burst: ['12']
+      x-ratelimit-limit-minute: ['200']
+      x-ratelimit-remaining-burst: ['12']
+      x-ratelimit-remaining-minute: ['199']
+      x-xss-protection: [1; mode=block]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.18.4]
+    method: GET
+    uri: https://api.helpscout.net/v1/customers/144228647.json
+  response:
+    body: {string: !!python/unicode '{"item":{"id":144228647,"firstName":"Test","lastName":"User","fullName":"Test
+        User","photoUrl":null,"photoType":null,"gender":"male","age":null,"organization":"Test
+        Company","jobTitle":"CEO","location":null,"createdAt":"2017-09-23T20:12:43Z","modifiedAt":"2017-10-28T17:21:12Z","background":"This
+        is a basic test user","address":null,"socialProfiles":null,"emails":[{"id":191676921,"value":"test@example.com","location":"work"}],"phones":[{"id":198059533,"value":"1234567890","location":"work"}],"chats":null,"websites":null}}'}
+    headers:
+      access-control-allow-credentials: ['true']
+      access-control-allow-headers: ['Origin, X-Requested-With, Content-Type, Accept,
+          Authorization']
+      access-control-allow-methods: ['GET, POST, PUT, DELETE']
+      access-control-allow-origin: ['*']
+      connection: [keep-alive]
+      content-length: ['526']
+      content-type: [application/json; charset=utf-8]
+      correlation-id: [9298a7c0-93dd-4777-b0a4-47c83bfae739#17131964]
+      date: ['Mon, 30 Oct 2017 16:51:04 GMT']
+      server: [nginx]
+      strict-transport-security: [max-age=31536000; includeSubdomains;]
+      via: [kong/0.10.3]
+      x-content-type-options: [nosniff]
+      x-frame-options: [SAMEORIGIN]
+      x-kong-proxy-latency: ['0']
+      x-kong-upstream-latency: ['13']
+      x-ratelimit-interval-burst: ['5']
+      x-ratelimit-interval-minute: ['60']
+      x-ratelimit-limit-burst: ['12']
+      x-ratelimit-limit-minute: ['200']
+      x-ratelimit-remaining-burst: ['12']
+      x-ratelimit-remaining-minute: ['198']
+      x-xss-protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1
