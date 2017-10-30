@@ -16,7 +16,7 @@
                     <group name="group_main">
                         <field name="token_secret" />
                         <field name="company_id" />
-                        <field name="uri" />
+                        <field name="uri_json" />
 
                         <field name="interface_type" invisible="1" />
                         <field name="token_type" invisible="1" />
