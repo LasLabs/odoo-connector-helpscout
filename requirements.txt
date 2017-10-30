@@ -1,1 +1,2 @@
-helpscout>=0.0.7b
+helpscout>=0.1.1
+vcrpy>=1.11.1

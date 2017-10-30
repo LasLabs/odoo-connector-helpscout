@@ -94,7 +94,7 @@ class HelpScoutExporterBase(AbstractComponent):
         # The commit will also release the lock acquired on the binding
         # record
         if not getattr(threading.currentThread(), 'testing', None):
-            self.env.cr.commit()  # noqa
+            self.env.cr.commit()  # pylint: disable=E8102
 
         self._after_export()
 
@@ -135,6 +135,7 @@ class HelpScoutExporter(AbstractComponent):
         with :meth:`_export_dependencies`. Each level will set its own lock
         on the binding record it has to export.
         """
+        # pylint: disable=E8103
         sql = 'SELECT id FROM %s WHERE ID = %%s FOR UPDATE NOWAIT' % (
             self.model._table,
         )
@@ -270,7 +271,7 @@ class HelpScoutExporter(AbstractComponent):
                     if not getattr(
                             threading.currentThread(), 'testing', None,
                     ):
-                        self.env.cr.commit()  # noqa
+                        self.env.cr.commit()  # pylint: disable=E8102
         else:
             # If helpscout_bind_ids does not exist we are typically in a
             # "direct" binding (the binding record is the same record).

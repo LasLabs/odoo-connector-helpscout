@@ -26,6 +26,7 @@ class HelpScoutHook(object):
         return HelpScoutWebHook(secret_key)
 
 
+# pylint: disable=W8106
 class HelpScoutCRUDAdapter(AbstractComponent):
 
     _name = 'helpscout.crud.adapter'
@@ -51,6 +52,7 @@ class HelpScoutCRUDAdapter(AbstractComponent):
         raise NotImplementedError
 
 
+# pylint: disable=W8106
 class HelpScoutAdapter(AbstractComponent):
 
     _name = 'helpscout.adapter'
