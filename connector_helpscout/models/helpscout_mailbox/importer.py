@@ -20,9 +20,9 @@ class HelpScoutMailboxImportMapper(Component):
     @mapping
     @only_create
     def odoo_id(self, record):
-        # Searches project.project records for matching email address
+        # Searches project.project records for matching name
         project = self.env['project.project'].search([
-            ('helpscout_email', '=', record.email),
+            ('name', '=', record.name),
         ])
         if project:
             return {'odoo_id': project.id}

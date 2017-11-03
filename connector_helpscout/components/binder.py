@@ -13,6 +13,7 @@ class HelpScoutModelBinder(Component):
     _apply_on = [
         'helpscout.customer',
         'helpscout.mailbox',
+        'helpscout.helpscout.folder',
         'helpscout.user',
         'helpscout.web.hook',
     ]
