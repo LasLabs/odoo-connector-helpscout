@@ -161,7 +161,7 @@ class HelpScoutImporter(AbstractComponent):
                 record, instead of the search of the remote.
 
         Returns:
-            str: Canonical status message.
+            HelpScoutBinding: The binding record that was imported.
         """
 
         self.external_id = external_id
@@ -211,7 +211,7 @@ class HelpScoutImporter(AbstractComponent):
 
         self._after_import(binding)
 
-        return _('Import complete.')
+        return binding
 
 
 class BatchImporter(AbstractComponent):
