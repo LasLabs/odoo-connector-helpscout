@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="project.task.type" id="status_active">
+        <field name="name">Active</field>
+    </record>
+
+    <record model="project.task.type" id="status_pending">
+        <field name="name">Pending</field>
+    </record>
+
+    <record model="project.task.type" id="status_closed">
+        <field name="name">Closed</field>
+    </record>
+
+    <record model="project.task.type" id="status_spam">
+        <field name="name">Spam</field>
+    </record>
+
+</odoo>

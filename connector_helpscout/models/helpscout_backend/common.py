@@ -25,9 +25,6 @@ class HelpscoutBackend(models.Model):
 
     EVENT_TO_MODEL = {
         'customer': 'helpscout.customer',
-        'folder': 'helpscout.folder',
-        'mailbox': 'helpscout.mailbox',
-        'user': 'helpscout.user',
         'satisfaction': 'helpscout.rating',
         'convo': 'helpscout.conversation',
     }
@@ -71,11 +68,6 @@ class HelpscoutBackend(models.Model):
              'Helpscout users to existing Odoo users. This field will be '
              'matched against the Helpscout user\'s email address.'
     )
-
-    # These dates are used by the import crons to start where left off.
-    import_customers_from_date = fields.Datetime()
-    import_mailboxes_from_date = fields.Datetime()
-    import_users_from_date = fields.Datetime()
 
     @property
     @api.model
@@ -133,42 +125,23 @@ class HelpscoutBackend(models.Model):
         )
 
     @api.multi
-    def import_from_date(self, model_name, from_date_field):
-        """Import external records for a model from a date.
-
-        Args:
-            model_name (str): Name of model to import for.
-            from_date_field (str): Name of the field on the backend that
-                contains the last time this model was synced (e.g.
-                ``import_customers_from_date`` for Customers).
+    def action_initial_import(self):
         """
-
-        import_start_time = datetime.now()
-
+        Import external conversation records. Records for other models are
+        imported as dependencies of conversations.
+        """
+        from_date = datetime(2011, 4, 17)  # HelpScout founding date
         for backend in self:
-
-            from_date = backend[from_date_field]
-            if from_date:
-                from_date = fields.Datetime.from_string(from_date)
-            else:
-                # Hard-code to HelpScout founding date
-                from_date = datetime(2011, 4, 17)
-
-            self.env[model_name].with_delay().import_batch(
+            self.env['helpscout.conversation'].with_delay().import_batch(
                 backend,
                 filters=[
-                    ('modified_at', from_date, import_start_time),
+                    ('modified_at', from_date, datetime.now()),
                 ],
             )
 
-        self.write({
-            from_date_field: fields.Datetime.to_string(import_start_time),
-        })
-
     @api.multi
     def action_create_web_hook(self):
-        """Create the web hook necessary for inbound sync & unlink existing.
-        """
+        """Create the web hook necessary for inbound sync & unlink existing."""
         for record in self:
             values = record._get_hook_values()
             if record.web_hook_id:
@@ -191,25 +164,6 @@ class HelpscoutBackend(models.Model):
             'name': name,
         }
         return values
-
-    # Import actions
-    @api.multi
-    def action_import_mailboxes(self):
-        """Trigger an import for mailboxes on the appropriate from field."""
-        self.import_from_date('helpscout.mailbox',
-                              'import_mailboxes_from_date')
-
-    @api.multi
-    def action_import_customers(self):
-        """Trigger an import for customers on the appropriate from field."""
-        self.import_from_date('helpscout.customer',
-                              'import_customers_from_date')
-
-    @api.multi
-    def action_import_users(self):
-        """Trigger an import for users on the appropriate from field."""
-        self.import_from_date('helpscout.user',
-                              'import_users_from_date')
 
     @api.multi
     def action_receive_hook(self, event_type, signature, data_str):

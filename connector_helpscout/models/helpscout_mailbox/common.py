@@ -27,6 +27,11 @@ class HelpScoutMailbox(models.Model):
     _rec_name = 'name'
 
     helpscout_email = fields.Char(string="HelpScout mailbox email address")
+    helpscout_folder_ids = fields.One2many(
+        string='HelpScout Folders',
+        comodel_name='helpscout.helpscout.folder',
+        inverse_name='helpscout_mailbox_id',
+    )
     odoo_id = fields.Many2one(
         string='Project',
         comodel_name='project.project',

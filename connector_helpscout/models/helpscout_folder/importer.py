@@ -13,9 +13,7 @@ class HelpScoutFolderImportMapper(Component):
     _inherit = 'helpscout.import.mapper'
     _apply_on = 'helpscout.helpscout.folder'
 
-    direct = [('type', 'helpscout_type'),
-              ('modified_at', 'backend_date_modified'),
-              ]
+    direct = [('type', 'helpscout_type')]
 
     def _get_user_name(self, user_id):
         user = self.env['helpscout.user'].search([
@@ -48,11 +46,4 @@ class HelpScoutFolderImporter(Component):
     """Import one HelpScout record."""
     _name = 'helpscout.record.importer.folder'
     _inherit = 'helpscout.importer'
-    _apply_on = 'helpscout.helpscout.folder'
-
-
-class HelpScoutFolderBatchImporter(Component):
-    """Import a batch of HelpScout records."""
-    _name = 'helpscout.batch.importer.folder'
-    _inherit = 'helpscout.direct.batch.importer'
     _apply_on = 'helpscout.helpscout.folder'

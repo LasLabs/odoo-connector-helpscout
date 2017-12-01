@@ -41,8 +41,15 @@ class HelpScoutHelpScoutFolder(models.Model):
 
     _rec_name = 'name'
 
-    external_id = fields.Char(
-        string='HelpScout Mailbox ID, Folder ID',
+    helpscout_conversation_ids = fields.One2many(
+        string='HelpScout Conversations',
+        comodel_name='helpscout.conversation',
+        inverse_name='helpscout_folder_id',
+    )
+    helpscout_mailbox_id = fields.Many2one(
+        string='HelpScout Mailbox',
+        comodel_name='helpscout.mailbox',
+        ondelete='cascade',
     )
     odoo_id = fields.Many2one(
         string='HelpScout Folder',
@@ -58,25 +65,3 @@ class HelpScoutFolderAdapter(Component):
     _inherit = 'helpscout.adapter'
     _apply_on = 'helpscout.helpscout.folder'
     _helpscout_endpoint = 'Mailboxes'
-
-    def search_read(self, mailbox_id):
-        """Gets and returns all folder objects associated with the provided
-        mailbox_id"""
-        return self.endpoint.get_folders(mailbox_id)
-
-    def search(self, filters=None):
-        """Returns IDs from list of objects returned by search_read"""
-        mailbox_id = filters.get('mailbox_id')
-        return [
-            "%d,%d" % (mailbox_id, r.id)
-            for r
-            in self.search_read(mailbox_id)
-        ]
-
-    def read(self, _id):
-        """Iterates over list of folder objects associated with mailbox_id,
-        returns folder object matching provided folder id"""
-        mailbox_id, folder_id = [int(n) for n in _id.split(',')]
-        for r in self.search_read(mailbox_id):
-            if r.id == folder_id:
-                return r

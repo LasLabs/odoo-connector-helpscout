@@ -15,8 +15,6 @@ class HelpScoutCustomerImportMapper(Component):
               (none('last_name'), 'lastname'),
               (none('background'), 'comment'),
               (none('job_title'), 'function'),
-              ('created_at', 'backend_date_created'),
-              ('modified_at', 'backend_date_modified'),
               ]
 
     @mapping
@@ -25,6 +23,15 @@ class HelpScoutCustomerImportMapper(Component):
             return {'email': record.emails[0].value}
         except IndexError:
             return
+
+    @mapping
+    def full_name(self, record):
+        """Ensure at least one name is provided"""
+        if record.first_name or record.last_name:
+            return
+        if not record.full_name:
+            return {'firstname': 'Unknown HelpScout Customer'}
+        return {'firstname': record.full_name}
 
     @mapping
     @only_create

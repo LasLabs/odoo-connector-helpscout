@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="thread_lineitem" model="mail.message.subtype">
+        <field name="name">Line Item</field>
+        <field name="internal" eval="True"/>
+        <field name="sequence" eval="0"/>
+    </record>
+
+    <record id="thread_message" model="mail.message.subtype">
+        <field name="name">Message</field>
+        <field name="sequence" eval="0"/>
+    </record>
+
+    <record id="thread_chat" model="mail.message.subtype">
+        <field name="name">Chat</field>
+        <field name="sequence" eval="0"/>
+    </record>
+
+    <record id="thread_customer" model="mail.message.subtype">
+        <field name="name">Customer</field>
+        <field name="sequence" eval="0"/>
+    </record>
+
+    <record id="thread_forwardparent" model="mail.message.subtype">
+        <field name="name">Forward Parent</field>
+        <field name="description">Original conversation that initiated the forward event.</field>
+        <field name="sequence" eval="0"/>
+    </record>
+
+    <record id="thread_forwardchild" model="mail.message.subtype">
+        <field name="name">Forward Child</field>
+        <field name="description">First thread of the new forwarded conversation.</field>
+        <field name="sequence" eval="0"/>
+    </record>
+
+    <record id="thread_phone" model="mail.message.subtype">
+        <field name="name">Phone</field>
+        <field name="sequence" eval="0"/>
+    </record>
+
+</odoo>

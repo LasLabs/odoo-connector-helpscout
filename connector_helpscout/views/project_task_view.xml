@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 LasLabs Inc.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+    <record id="project_task_form_view" model="ir.ui.view">
+        <field name="name">project.task.form</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <page name="description_page" position="after">
+                <page name="helpscout" string="HelpScout">
+                    <group>
+                        <field name="helpscout_bind_ids" nolabel="1">
+                            <tree>
+                                <field name="backend_id"/>
+                                <field name="company_id"/>
+                                <field name="helpscout_folder_id"/>
+                                <field name="helpscout_type"/>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>

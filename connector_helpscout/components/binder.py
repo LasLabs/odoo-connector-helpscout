@@ -11,9 +11,13 @@ class HelpScoutModelBinder(Component):
     _name = 'helpscout.binder'
     _inherit = ['base.binder', 'base.helpscout.connector']
     _apply_on = [
+        'helpscout.attachment',
+        'helpscout.conversation',
         'helpscout.customer',
         'helpscout.mailbox',
         'helpscout.helpscout.folder',
+        'helpscout.tag',
+        'helpscout.thread',
         'helpscout.user',
         'helpscout.web.hook',
     ]

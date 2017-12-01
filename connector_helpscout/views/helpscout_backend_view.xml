@@ -11,6 +11,11 @@
             <form string="HelpScout Backend">
 
                 <header>
+                    <button name="action_initial_import"
+                            type="object"
+                            class="oe_highlight"
+                            string="Queue Initial Import"
+                            />
                     <button name="action_create_web_hook"
                             type="object"
                             string="Create Web Hooks"
@@ -39,61 +44,9 @@
                             <field name="company_id" />
                             <field name="is_default_export" />
                             <field name="web_hook_id" />
+                            <field name="user_match_field" />
                         </group>
                     </group>
-
-                    <notebook>
-
-                        <page name="page_imports" string="Imports">
-                            <group name="group_import_customers">
-                                <div>
-                                    <label for="import_customers_from_date"
-                                           string="Import Customers From"
-                                           class="oe_inline" />
-                                    <field name="import_customers_from_date"
-                                           class="oe_inline"
-                                           nolabel="1" />
-                                </div>
-                                <button name="action_import_customers"
-                                        type="object"
-                                        class="oe_highlight"
-                                        string="Queue Import" />
-                            </group>
-                            <group name="group_import_mailboxes">
-                                <div>
-                                    <label for="import_mailboxes_from_date"
-                                           string="Import Mailboxes From"
-                                           class="oe_inline" />
-                                    <field name="import_mailboxes_from_date"
-                                           class="oe_inline"
-                                           nolabel="1" />
-                                </div>
-                                <button name="action_import_mailboxes"
-                                        type="object"
-                                        class="oe_highlight"
-                                        string="Queue Import" />
-                            </group>
-                            <group name="group_import_users">
-                                <div>
-                                    <label for="import_users_from_date"
-                                           string="Import Users From"
-                                           class="oe_inline" />
-                                    <field name="import_users_from_date"
-                                           class="oe_inline"
-                                           nolabel="1" />
-                                </div>
-                                <button name="action_import_users"
-                                        type="object"
-                                        class="oe_highlight"
-                                        string="Queue Import" />
-                            </group>
-                        </page>
-                        <page name="page_settings" string="Settings">
-                            <group name="group_users" string="Users">
-                                <field name="user_match_field" />
-                            </group>
-                        </page>
-                    </notebook>
 
                 </sheet>
 

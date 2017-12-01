@@ -22,8 +22,6 @@ class HelpScoutUserImportMapper(Component):
               ('email', 'email'),
               (none('timezone'), 'tz'),
               (none('type'), 'helpscout_type'),
-              ('created_at', 'backend_date_created'),
-              ('modified_at', 'backend_date_modified'),
               ]
 
     @mapping

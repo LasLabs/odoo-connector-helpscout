@@ -31,7 +31,6 @@ class HelpScoutUser(models.Model):
             ('user', 'User'),
             ('team', 'Team'),
         ],
-        string="HelpScout type",
     )
     odoo_id = fields.Many2one(
         string='User',
