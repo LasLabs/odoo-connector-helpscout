@@ -62,13 +62,14 @@ class HelpScoutConversationImportMapper(Component):
 
     @mapping
     def tag_ids(self, record):
-        tags = self.env['helpscout.tag'].search([
+        tag_bindings = self.env['helpscout.tag'].search([
             ('name', 'in', record.tags),
-            ('backend_id', '=', self.backend_record),
+            ('backend_id', '=', self.backend_record.id),
         ])
-        if len(tags) != len(record.tags):
+        if len(tag_bindings) != len(record.tags):
             self.env['helpscout.tag'].import_batch(self.backend_record)
             return self.tag_ids(record)
+        tags = tag_bindings.mapped('odoo_id')
         if tags:
             return {'tag_ids': [(6, 0, tags.ids)]}
 
@@ -90,14 +91,6 @@ class HelpScoutConversationImporter(Component):
     _name = 'helpscout.record.importer.conversation'
     _inherit = 'helpscout.importer'
     _apply_on = 'helpscout.conversation'
-
-    def _import_dependencies(self):
-        """
-        Import dependencies for HelpScout conversation.
-        """
-        self.env['helpscout.customer'].import_batch(self.backend_record)
-        self.env['helpscout.user'].import_batch(self.backend_record)
-        self.env['helpscout.mailbox'].import_batch(self.backend_record)
 
     def _after_import(self, binding):
         binding_model = self.env['helpscout.thread'].with_context(

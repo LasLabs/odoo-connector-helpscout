@@ -58,6 +58,15 @@ class HelpScoutUserImporter(Component):
     _inherit = 'helpscout.importer'
     _apply_on = 'helpscout.user'
 
+    def _must_skip(self):
+        """Skip records incompatible with Odoo user model."""
+        if self.helpscout_record.type == 'team':
+            return "Skipping import of Helpscout Team record."
+        if not self.helpscout_record.email:
+            return "Skipping import of Helpscout User without email address."
+
+        return
+
 
 class HelpScoutUserBatchImporter(Component):
     """Import a batch of HelpScout records."""

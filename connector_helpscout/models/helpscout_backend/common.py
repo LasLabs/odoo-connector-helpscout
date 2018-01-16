@@ -6,7 +6,6 @@ import logging
 
 from contextlib import contextmanager
 
-from datetime import datetime
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
@@ -28,6 +27,13 @@ class HelpscoutBackend(models.Model):
         'satisfaction': 'helpscout.rating',
         'convo': 'helpscout.conversation',
     }
+
+    IMPORT_MODELS = [
+        'helpscout.customer',
+        'helpscout.user',
+        'helpscout.mailbox',
+        'helpscout.conversation',
+    ]
 
     version = fields.Selection(
         selection='_get_versions',
@@ -127,17 +133,14 @@ class HelpscoutBackend(models.Model):
     @api.multi
     def action_initial_import(self):
         """
-        Import external conversation records. Records for other models are
-        imported as dependencies of conversations.
+        Import external conversation records. Records for models not explicitly
+        named are imported as dependencies.
         """
-        from_date = datetime(2011, 4, 17)  # HelpScout founding date
         for backend in self:
-            self.env['helpscout.conversation'].with_delay().import_batch(
-                backend,
-                filters=[
-                    ('modified_at', from_date, datetime.now()),
-                ],
-            )
+            for model_name in self.IMPORT_MODELS:
+                self.env[model_name].with_context(
+                    connector_no_export=True,
+                ).with_delay().import_batch(backend)
 
     @api.multi
     def action_create_web_hook(self):
