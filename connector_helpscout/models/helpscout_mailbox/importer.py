@@ -11,13 +11,6 @@ class HelpScoutMailboxImportMapper(Component):
     _inherit = 'helpscout.import.mapper'
     _apply_on = 'helpscout.mailbox'
 
-    HELPSCOUT_STATUSES = [
-        'active',
-        'pending',
-        'closed',
-        'spam',
-    ]
-
     direct = [('name', 'name'),
               (none('email'), 'helpscout_email'),
               ]
@@ -38,6 +31,13 @@ class HelpScoutMailboxImporter(Component):
     _name = 'helpscout.record.importer.mailbox'
     _inherit = 'helpscout.importer'
     _apply_on = 'helpscout.mailbox'
+
+    HELPSCOUT_STATUSES = [
+        'active',
+        'pending',
+        'closed',
+        'spam',
+    ]
 
     def _after_import(self, binding):
         self._add_project_stages(binding)

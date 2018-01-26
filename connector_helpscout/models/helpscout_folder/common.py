@@ -24,6 +24,7 @@ class HelpScoutFolder(models.Model):
             ('needsattention', 'Needs Attention'),
             ('open', 'Open'),
             ('spam', 'Spam'),
+            ('team', 'Team'),
         ],
     )
     name = fields.Char(
